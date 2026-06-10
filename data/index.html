@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cucumber Agrotech Smart Farming</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo-box">
+            <div class="logo-icon">
+                🌱
+            </div>
+
+            <div>
+                <h2>Cucumber Agrotech</h2>
+                <span>Smart Farming System</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <a class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a>
+                <i class="fa-solid fa-chart-line"></i>
+                Monitoring
+            </a>
+
+            <a>
+                <i class="fa-solid fa-sliders"></i>
+                Kontrol
+            </a>
+
+            <a>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Riwayat
+            </a>
+
+            <a>
+                <i class="fa-solid fa-gear"></i>
+                Pengaturan
+            </a>
+
+        </nav>
+
+        <div class="system-box">
+
+    <h3>Sistem</h3>
+
+    <div class="system-status-item">
+        <i class="fa-solid fa-wifi"></i>
+        <span>WiFi : Terhubung</span>
+    </div>
+
+    <div class="system-status-item">
+        <i class="fa-solid fa-microchip"></i>
+        <span>ESP32 : Online</span>
+    </div>
+
+    <div class="system-status-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>ThingSpeak : Aktif</span>
+    </div>
+
+</div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="status-pill">
+                <span class="dot"></span>
+                Koneksi ThingSpeak Aktif
+            </div>
+
+            <div class="status-pill">
+                <i class="fa-solid fa-clock"></i>
+                Update Realtime
+            </div>
+
+        </header>
+
+        <!-- SENSOR CARD -->
+    <section class="sensor-grid">
+
+    <div class="sensor-card">
+
+        <div class="icon-box red">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+        </div>
+
+        <span>Suhu Udara</span>
+
+        <h2 id="temp-display">--.-°C</h2>
+
+    </div>
+
+    <div class="sensor-card">
+
+        <div class="icon-box blue">
+            <i class="fa-solid fa-droplet"></i>
+        </div>
+
+        <span>Kelembapan Udara</span>
+
+        <h2 id="hum-display">--%</h2>
+
+    </div>
+
+    <div class="sensor-card soil-card">
+
+        <span>Kelembapan Tanah</span>
+
+        <canvas id="radialGauge"
+                width="250"
+                height="125">
+        </canvas>
+
+    </div>
+
+</section>
+
+        <!-- CONTENT GRID -->
+        <section class="content-grid">
+
+            <!-- CONTROL -->
+            <div class="control-card">
+
+                <h2>
+                    <i class="fa-solid fa-sliders"></i>
+                    Kontrol Perangkat
+                </h2>
+
+                <!-- POMPA -->
+                <div class="device-box">
+
+                    <h3>Pompa Air</h3>
+
+                    <div class="btn-group">
+
+                        <button
+                        class="btn btn-auto"
+                        onclick="setPumpMode('auto')">
+                        AUTO
+                        </button>
+
+                        <button
+                        class="btn btn-on"
+                        onclick="sendPump(1)">
+                        ON
+                        </button>
+
+                        <button
+                        class="btn btn-off"
+                        onclick="sendPump(0)">
+                        OFF
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- FAN -->
+                <div class="device-box">
+
+                    <h3>Kipas Panel</h3>
+
+                    <div class="btn-group">
+
+                        <button
+                        class="btn btn-auto"
+                        onclick="setFanMode('auto')">
+                        AUTO
+                        </button>
+
+                        <button
+                        class="btn btn-on"
+                        onclick="sendFan(1)">
+                        ON
+                        </button>
+
+                        <button
+                        class="btn btn-off"
+                        onclick="sendFan(0)">
+                        OFF
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CHART -->
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h2>
+                            Grafik Tren Lingkungan
+                        </h2>
+
+                        <span>
+                            Monitoring realtime
+                        </span>
+                    </div>
+
+                </div>
+
+                <canvas id="lineChart"></canvas>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
